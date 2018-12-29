@@ -4,6 +4,8 @@
 	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="https://citation.projecttopics.org/images/icon.png">
+    <link rel="chrome-webstore-item"
+    href="https://chrome.google.com/webstore/detail/bmnhkealpmobbfegoljlbjfcmkepkebp">
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="This free Word to PDF converter allows you to convert Word documents to PDF files, compatible will all major software, providing the best possible quality of conversion.">
 </head>
@@ -69,7 +71,7 @@ h1{
 		</div>
 		<div class="row">
 			<div class="col-xs-12 text-center">
-				<button class="btn btn-success bigger">Continue</button>
+				<a href="https://chrome.google.com/webstore/detail/project-topics-word-pdf-c/bmnhkealpmobbfegoljlbjfcmkepkebp" target="_blank" class="btn btn-success bigger js-install-btn">Continue</a>
 			</div>
 		</div>
 	</div>
@@ -80,4 +82,16 @@ h1{
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script>
+    //window.location.href='chrome-extension://bmnhkealpmobbfegoljlbjfcmkepkebp/product/index.html'if (chrome.app.isInstalled) {
+        //console.log('crazy')
+        var go = function() {
+            console.log('carzy')
+        var event = document.createEvent('Event');
+        event.initEvent('hello');
+        document.dispatchEvent(event);
+
+}
+ go()
+</script>
 </html>
