@@ -57,7 +57,7 @@ def do_convert(file_url, file_type, file_name):
     convertapi.api_secret = settings.API_SECRET
     #pdb.set_trace()
     try:
-        pdb.set_trace()
+        #pdb.set_trace()
         if file_type == 'docx':
             converter = Converter.objects.filter(convert_from=file_type.strip())[0]
         else:
