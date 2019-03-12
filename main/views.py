@@ -55,9 +55,10 @@ class Convert(View):
 
 def do_convert(file_url, file_type, file_name):
     convertapi.api_secret = settings.API_SECRET
+    base_url='https://wordtopdf.projecttopics.org'
     #pdb.set_trace()
     try:
-        #pdb.set_trace()
+        pdb.set_trace()
         if file_type == 'docx':
             converter = Converter.objects.filter(convert_from=file_type.strip())[0]
         else:
@@ -70,7 +71,7 @@ def do_convert(file_url, file_type, file_name):
     try:
         result = convertapi.convert(
             'pdf',
-            {'File': file_url},#'C:\\Users\\tolu\\PycharmProjects\\pdfconverter\\media\\' + filename},  # uploaded_file_url},
+            {'File': base_url+file_url},#'C:\\Users\\tolu\\PycharmProjects\\pdfconverter\\media\\' + filename},  # uploaded_file_url},
             from_format=file_type,
         )
         file_url = result.file.url
