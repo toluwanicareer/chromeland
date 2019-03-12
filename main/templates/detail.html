@@ -1,0 +1,175 @@
+{% include 'includes/header.html' %}
+
+	<style>
+    .container{
+        max-width: 1200px;
+    }
+</style>
+    	<main>
+    		<div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="circlediv text-center">
+                                <div class="circle detail">
+                                    <img src="/static/img/{{ converter.image_file }}" class="img-responsive">
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 style="margin-top:35px; font-weight: 900">{{ converter.title }}</h3>
+                        <p>{{ converter.tag_line | default:''}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                            <form action="/convert" class="dropzone" id="myAwesomeDropzone"></form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+
+                        <button class="btn btn-primary upbutton medium js-upload-btn"><i class="glyphicon glyphicon-plus"></i> Add File</button>
+                        <!--img src="/static/img/gdrive.png" class="img-responsive gdrive" width="20px">
+                        <img src="/static/img/dropbox.png" class="img-responsive dropbox" width="20px"-->
+                        <div id="dropbox-container" class="medium"></div>
+                        <!--a href="https://dl.dropboxusercontent.com/s/deroi5nwm6u7gdf/advice.png" class="dropbox-saver dropbox"></a-->
+                        <h3 class="loading">Converting . . . <img src="/static/img/loading.gif" width="60px"></h3>
+                        <div style="width:100%" class="text-center">
+                            <a href="#" class="btn btn-primary upbutton download "><i class="glyphicon glyphicon-arrow-down"></i> Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {%  for desc in converter.subtotpic_set.all %}
+                    <div class="col-md-4">
+                        <h3>{{ desc.title }}</h3>
+                        <p>
+                           {{ desc.description }}
+                        </p>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <hr class="seperator">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>More Tools</h4>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    {%  for converter in more_tools %}
+                    <div class="col-md-3">
+                        <div class="circlediv text-center">
+                            <a href="#">
+                                <div class="circle detail">
+                                    <img src="/static/img/{{ converter.image_file }}" class="img-responsive">
+                                </div>
+                                {{ converter.title }}
+                            </a>
+                        </div>
+                    </div>
+                    {%  endfor %}
+                </div>
+            </div>
+    	</main>
+
+
+	<script
+  			src="https://code.jquery.com/jquery-3.3.1.min.js"
+  			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  			crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+        <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js"></script>
+<script>
+    $('.js-upload-btn').click(function(e){
+        $('.dropzone').trigger('click')
+    });
+
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFiles: 1,
+        acceptedFiles:".{{ converter.convert_from }}",
+        init:function(){
+            this.on('addedfile' ,function(file){
+                console.log(file)
+                filename=file.name;
+                file_ext='.'+filename.split('.').pop()
+                extension=".{{ converter.convert_from }}";
+                if (extension == file_ext) {
+                    $('.medium').css('display', 'none');
+                    $('.loading').css('display', 'block')
+                }
+            })
+        }
+    };
+
+    function show_download_link(data){
+        $('.download').css('display', 'block');
+        $('.loading').css('display','none');
+        $('.download').attr({'href':data.data});
+    }
+
+    options = {
+
+    // Required. Called when a user selects an item in the Chooser.
+    success: function(files) {
+        $('.medium').css('display','none');
+        $('.loading').css('display', 'block')
+        console.log(files[0]);
+        file=files[0];
+
+        $.get('/convert', {'file_url':file.link,'file_name':file.name}, function(data){
+            if (data.status == 200){
+              show_download_link(data)
+            }
+            else{
+                alert(data.data)
+            }
+        });
+
+    },
+
+    // Optional. Called when the user closes the dialog without selecting a file
+    // and does not include any parameters.
+    cancel: function() {
+
+    },
+
+    // Optional. "preview" (default) is a preview link to the document for sharing,
+    // "direct" is an expiring link to download the contents of the file. For more
+    // information about link types, see Link types below.
+    linkType: "direct", // or "direct"
+
+    // Optional. A value of false (default) limits selection to a single file, while
+    // true enables multiple file selection.
+    multiselect: false, // or true
+
+    // Optional. This is a list of file extensions. If specified, the user will
+    // only be able to select files with these extensions. You may also specify
+    // file types, such as "video" or "images" in the list. For more information,
+    // see File types below. By default, all extensions are allowed.
+    extensions: ['.{{ converter.convert_from }}'],
+
+    // Optional. A value of false (default) limits selection to files,
+    // while true allows the user to select both folders and files.
+    // You cannot specify `linkType: "direct"` when using `folderselect: true`.
+    folderselect: false, // or true
+
+    // Optional. A limit on the size of each file that may be selected, in bytes.
+    // If specified, the user will only be able to select files with size
+    // less than or equal to this limit.
+    // For the purposes of this option, folders have size zero.
+   // sizeLimit: 1024, // or any positive number
+};
+    var button = Dropbox.createChooseButton(options);
+    console.log(button)
+    document.getElementById("dropbox-container").appendChild(button);
+</script>
+	</body>
+</html>

@@ -1,0 +1,180 @@
+body {
+    font-family: 'Comfortaa', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 14px;
+}
+
+.circle {
+    background-color: #fff;
+    border-radius: 200px;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    border: 20px solid #eaebec;
+    transition-property: all;
+    box-sizing: border-box;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.circle.detail{
+    border-radius: 120px;
+    height: 120px;
+    width: 120px;
+    border: 10px solid #eaebec;
+}
+
+
+.circlediv a{
+  
+    color: #434a54;
+    outline: none;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 1000;
+}
+
+.circlediv a:hover{
+    color: #ea6e55;
+}
+
+.circle:hover{
+     border: 18px solid #ea6e55;
+}
+
+.circle.detail:hover{
+     border: 5px solid #ea6e55;
+}
+
+.container{
+    max-width:900px;
+}
+
+.circlediv{
+    margin-bottom: 20px;
+}
+
+main{
+    background-color: #F6F6F6;
+}
+
+main{
+    padding-top: 50px;
+}
+
+
+.navbar {
+    position: relative;
+    min-height: 70;
+    border: 1px solid transparent;
+    margin-bottom: 0px;
+}
+
+.navbar-brand{
+    margin-top: 12px;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #000;
+    margin-top: 12px;
+}
+
+.navbar a{
+    color:#000;
+}
+
+.navbar ul{
+    margin-top: 12px;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.dropzone{
+    height: 200px;
+    background-color: #fff;
+    border:10px solid #eee !important ;
+    border-radius: 5px;
+}
+.upbutton{
+    width:150px;
+    height:50px;
+    position:relative;
+    top:-110px;
+    margin-top: -25px;
+    border-radius: 10px;
+    font-size: 20px;
+    right:30px;
+
+}
+
+.dropzone .dz-message{
+    display: none;
+}
+
+.gdrive{
+    margin-left: auto;
+    margin-right: auto;
+    top:-145px;
+    position: relative;
+    left:90px;
+}
+
+.dropbox, .dropbox-dropin-default{
+    margin-left: auto;
+    margin-right: auto;
+    top:-150px;
+    position: relative;
+    left:130px;
+}
+
+.loading{
+    top:-150px;
+    display:none;
+    position:relative;
+}
+.download{
+    display: none;
+    background: green;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.download:hover, .download:active, .download:focus, .download:visited{
+    background: green;
+}
+
+.dz-preview {
+    display:none !important;
+}
+.seperator{
+    border-top: 5px solid #eee;
+}
+
+@media only screen and (max-width: 768px){
+    .circle{
+        width:110px;
+        height: 110px;
+        border-radius: 110px;
+        border-width: 15px;
+    }
+    .circle:hover{
+     border: 7px solid #ea6e55;
+}
+
+
+
+
+}

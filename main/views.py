@@ -1,12 +1,80 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-
+from django.views.generic import ListView, DetailView
+from .models import Converter
+from django.conf import settings
+from django.views import View
+from django.http import JsonResponse
+import requests
+from django.core.files.storage import FileSystemStorage
+import convertapi
+import pdb
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
-class HomeView(TemplateView):
+class HomeView(ListView):
+    model=Converter
+    queryset = Converter.objects.all()
+    context_object_name = 'converters'
     template_name = 'index.html'
 
+class ConverterDetail(DetailView):
+    model=Converter
+    context_object_name = 'converter'
+    template_name = 'detail.html'
+
+    def get_context_data(self, **kwargs):
+        context=super(ConverterDetail,self).get_context_data(**kwargs)
+        context['more_tools']=Converter.objects.all().exclude(id=self.object.id)
+        return context
+
+@method_decorator(csrf_exempt, 'dispatch')
+class Convert(View):
+
+
+    def get(self, request, *args, **kwargs):
+        file_url=request.GET.get('file_url')
+        filename=request.GET.get('file_name')
+        file_type = filename.split('.').pop()
+        response=do_convert(file_url,file_type,filename)
+        return JsonResponse(response)
+
+
+    def post(self, request,*args, **kwargs):
+        convertapi.api_secret = settings.API_SECRET
+        file=request.FILES['file']
+        fs = FileSystemStorage()
+        filename = fs.save(file.name, file)
+        file_type=filename.split('.').pop()
+        uploaded_file_url = fs.url(filename)
+        res=do_convert(uploaded_file_url,file_type,filename)
+        return JsonResponse(res)
+
+
+def do_convert(file_url, file_type, file_name):
+    convertapi.api_secret = settings.API_SECRET
+    #pdb.set_trace()
+    try:
+        converter = Converter.objects.get(convert_from=file_type.strip())
+    except Converter.DoesNotExist:
+        return {'status': 404, 'data': 'Resource not found'}
+    #uploaded_file_url = fs.url(filename)
+    # TODO: change file url before upload
+    try:
+        result = convertapi.convert(
+            'pdf',
+            {'File': file_url},#'C:\\Users\\tolu\\PycharmProjects\\pdfconverter\\media\\' + filename},  # uploaded_file_url},
+            from_format=file_type,
+        )
+        file_url = result.file.url
+        return {'status': 200, 'data': file_url}
+    except:
+        return {'status': 400, 'data': 'API ERROR'}
+
+
+#C:\Users\tolu\PycharmProjects\pdfconverter\media\Diamond Bank and Access Bank - Outcome of Court Ordered  Shareholders meeting - final 2 (1).docx
 class Google(TemplateView):
     template_name = 'googlee294f3cea858d890.html'
 

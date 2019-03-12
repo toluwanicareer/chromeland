@@ -1,97 +1,34 @@
-<html>
-<head>
-	<title>Word to PDF Converter – Convert Doc to PDF Online</title>
-	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="https://citation.projecttopics.org/images/icon.png">
-    <link rel="chrome-webstore-item"
-    href="https://chrome.google.com/webstore/detail/bmnhkealpmobbfegoljlbjfcmkepkebp">
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="This free Word to PDF converter allows you to convert Word documents to PDF files, compatible will all major software, providing the best possible quality of conversion.">
-</head>
-<style>
-body{
-	background-image: url(https://ak.imgfarm.com/images/vicinio/dsp-images/michael.lockwood/background999/1540845731197.jpg);
-    background-size: cover;
-    background-color: #000000 !important;
-    background-position: top center !important;
-    width: 100%;
-    height: 100%;
-    font-family: Open Sans;
-}
+{% include 'includes/header.html' %}
 
-.main{
-	background-color: #fff;
-	min-height: 200px;
-	padding-bottom: 50px;
-
-}
-.bullet1_1{
-	font-size: 18px;
-	margin-top: 30px
-}
-.bullet1_1 li{
-	margin-top: 20px;
-}
+    	<main>
+    		<div class="container">
+    			<div class="row">
+                    {%  for converter in converters %}
+    				<div class="col-md-4 col-sm-4 col-xs-6">
+    					<div class="circlediv text-center">
+    						<a href="{{ converter.get_absolute_url }}">
+    							<div class="circle">
+    								<img src="/static/img/{{ converter.image_file }}" class="img-responsive">
+    							</div>
+    							{{ converter.title }}
+    						</a>
+    					</div>
+    				</div>
+                    {%  endfor %}
 
 
-.bigger{
-	font-size: 40px;
-	font-weight: bold;
-	padding-left: 30px;
-	padding-right: 30px;
-}
+    			</div>
+    		</div>
+    	</main>
 
-.container{
-	max-width: 800px;
-}
 
-h1{
-	font-size: 40px;
-	font-weight: bold;
-	margin-top: 50px
-}
-</style>
-<body>
-	<div class="container main" style="margin-top: 50px">
-		<div class="row">
-			<div class="col-sm-12 text-center">
-				<h1 >Convert PDFs Quickly, Easily  And Free</h1>
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-xs-12">
-				<ul id="bullet1_1" class="responsiveClass bullet1_1" style="list-style-type: none;">
-	                <li>Step 1: Click ‘<b>Continue</b>’</li>
-	                <li>Step 2: Click ‘<b>Add to Chrome</b>’
-	                </li>
-	                <li>Step 3: Enjoy!</li>
-	            </ul>
-	        </div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 text-center">
-				<a href="https://chrome.google.com/webstore/detail/project-topics-word-pdf-c/bmnhkealpmobbfegoljlbjfcmkepkebp" target="_blank" class="btn btn-success bigger js-install-btn">Continue</a>
-			</div>
-		</div>
-	</div>
-
-</body>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script>
-    //window.location.href='chrome-extension://bmnhkealpmobbfegoljlbjfcmkepkebp/product/index.html'if (chrome.app.isInstalled) {
-        //console.log('crazy')
-        var go = function() {
-            console.log('carzy')
-        var event = document.createEvent('Event');
-        event.initEvent('hello');
-        document.dispatchEvent(event);
-
-}
- go()
-</script>
+	<script
+  			src="https://code.jquery.com/jquery-3.3.1.min.js"
+  			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  			crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+        <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js"></script>
+	</body>
 </html>
