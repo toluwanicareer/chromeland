@@ -38,7 +38,7 @@ class Convert(View):
         file_url=request.GET.get('file_url')
         filename=request.GET.get('file_name')
         file_type = filename.split('.').pop()
-        response=do_convert(file_url,file_type,filename)
+        response=do_convert(file_url,file_type,filename,'dropbox')
         return JsonResponse(response)
 
 
@@ -49,11 +49,11 @@ class Convert(View):
         filename = fs.save(file.name, file)
         file_type=filename.split('.').pop()
         uploaded_file_url = fs.url(filename)
-        res=do_convert(uploaded_file_url,file_type,filename)
+        res=do_convert(uploaded_file_url,file_type,filename,'dropzone')
         return JsonResponse(res)
 
 
-def do_convert(file_url, file_type, file_name):
+def do_convert(file_url, file_type, file_name, medium):
     convertapi.api_secret = settings.API_SECRET
     base_url='https://wordtopdf.projecttopics.org'
     #pdb.set_trace()
@@ -66,12 +66,14 @@ def do_convert(file_url, file_type, file_name):
 
     except Converter.DoesNotExist:
         return {'status': 404, 'data': 'Resource not found'}
-    #uploaded_file_url = fs.url(filename)
+    #
     # TODO: change file url before upload
+    if medium == 'dropzone':
+        file_url = base_url+file_url
     try:
         result = convertapi.convert(
             'pdf',
-            {'File': base_url+file_url},#'C:\\Users\\tolu\\PycharmProjects\\pdfconverter\\media\\' + filename},  # uploaded_file_url},
+            {'File': file_url},#'C:\\Users\\tolu\\PycharmProjects\\pdfconverter\\media\\' + filename},  # uploaded_file_url},
             from_format=file_type,
         )
         file_url = result.file.url
