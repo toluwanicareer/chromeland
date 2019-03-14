@@ -28,7 +28,9 @@ class ConverterDetail(DetailView):
     def get_context_data(self, **kwargs):
         context=super(ConverterDetail,self).get_context_data(**kwargs)
         context['more_tools']=Converter.objects.all().exclude(id=self.object.id)
+        context['converters']=Converter.objects.all()
         return context
+
 
 @method_decorator(csrf_exempt, 'dispatch')
 class Convert(View):

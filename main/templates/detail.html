@@ -91,6 +91,12 @@
         $('.dropzone').trigger('click')
     });
 
+     function show_download_link(data){
+        $('.download').css('display', 'block');
+        $('.loading').css('display','none');
+        $('.download').attr({'href':data.data});
+    }
+
     Dropzone.options.myAwesomeDropzone = {
         paramName: "file", // The name that will be used to transfer the file
         maxFiles: 1,
@@ -106,14 +112,19 @@
                     $('.loading').css('display', 'block')
                 }
             })
+            this.on('success', function(file,data){
+                console.log(data.status);
+
+                if (data.status==200) {
+                    show_download_link(data);
+                }
+                else{
+                    alert(data.data)
+                }
+            })
         }
     };
 
-    function show_download_link(data){
-        $('.download').css('display', 'block');
-        $('.loading').css('display','none');
-        $('.download').attr({'href':data.data});
-    }
 
     options = {
 
