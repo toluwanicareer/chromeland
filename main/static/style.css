@@ -132,7 +132,7 @@ main{
     left:90px;
 }
 
-.dropbox, .dropbox-dropin-default{
+.dropbox, .dropbox-dropin-btn{
     margin-left: auto;
     margin-right: auto;
     top:-150px;
@@ -146,10 +146,24 @@ main{
     position:relative;
 }
 .download{
-    display: none;
+    display: none ;
     background: green;
     margin-left: auto;
     margin-right: auto;
+    padding-top:11px;
+    width:230px;
+    top:-170px;
+}
+
+.logo{
+    position: relative;
+    top:-23px;
+}
+
+footer{
+    background-color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .download:hover, .download:active, .download:focus, .download:visited{
@@ -163,6 +177,25 @@ main{
     border-top: 5px solid #eee;
 }
 
+.download.dropbox-dropin-btn{
+    background-color: white !important;
+    border: 0px !important;
+    width:30px;
+    font-size: 0px !important;
+    top:-230px;
+}
+.dis{
+    background-color: #ea6e55;
+    top:0px;
+    width:300px;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    border:0px;
+    padding-top: 12px;
+    top:-130px;
+    left:1px;
+}
 @media only screen and (max-width: 768px){
     .circle{
         width:110px;
@@ -174,7 +207,21 @@ main{
      border: 7px solid #ea6e55;
 }
 
+    .dropbox-dropin-btn{
+        font-size: 0px !important;
+        left:70px
+}
 
+
+    .download{
+        width:120px;
+        font-size: 15px;
+    }
+
+    .dis{
+        width:200px;
+        font-size: 15px;
+    }
 
 
 }

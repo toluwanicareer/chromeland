@@ -28,15 +28,22 @@
                 <div class="row">
                     <div class="col-xs-12 text-center">
 
-                        <button class="btn btn-primary upbutton medium js-upload-btn"><i class="glyphicon glyphicon-plus"></i> Add File</button>
+                        <div class="medium">
+                            <button class="btn btn-primary upbutton js-upload-btn"><i class="glyphicon glyphicon-plus"></i> Add File</button>
+                        </div>
                         <!--img src="/static/img/gdrive.png" class="img-responsive gdrive" width="20px">
                         <img src="/static/img/dropbox.png" class="img-responsive dropbox" width="20px"-->
                         <div id="dropbox-container" class="medium"></div>
-                        <!--a href="https://dl.dropboxusercontent.com/s/deroi5nwm6u7gdf/advice.png" class="dropbox-saver dropbox"></a-->
+
                         <h3 class="loading">Converting . . . <img src="/static/img/loading.gif" width="60px"></h3>
                         <div style="width:100%" class="text-center">
                             <a href="#" class="btn btn-primary upbutton download "><i class="glyphicon glyphicon-arrow-down"></i> Download</a>
+                            <a href="#" class="btn btn-primary upbutton  dis dis-js"><i class="glyphicon glyphicon-plus"></i> Upload another file</a>
+
+
                         </div>
+
+                         <a href="https://dl.dropboxusercontent.com/s/deroi5nwm6u7gdf/advice.png" class="dropbox-saver dropbox download" style="display:none"></a>
                     </div>
                 </div>
 
@@ -64,7 +71,7 @@
                     {%  for converter in more_tools %}
                     <div class="col-md-3">
                         <div class="circlediv text-center">
-                            <a href="#">
+                            <a href="{{ converter.get_absolute_url }}">
                                 <div class="circle detail">
                                     <img src="/static/img/{{ converter.image_file }}" class="img-responsive">
                                 </div>
@@ -75,6 +82,7 @@
                     {%  endfor %}
                 </div>
             </div>
+        {%  include 'includes/footer.html' %}
     	</main>
 
 
@@ -93,9 +101,17 @@
 
      function show_download_link(data){
         $('.download').css('display', 'block');
+        $('.dis').css('display', 'block');
         $('.loading').css('display','none');
         $('.download').attr({'href':data.data});
     }
+
+    $('.dis-js').click(function(e){
+        $('.download').css('display', 'none');
+        $('.medium').css('display', 'inherit');
+        $('.dis').css('display', 'none');
+        $('.loading').css('display','none');
+    })
 
     Dropzone.options.myAwesomeDropzone = {
         paramName: "file", // The name that will be used to transfer the file
@@ -120,6 +136,9 @@
                 }
                 else{
                     alert(data.data)
+                    $('.loading').css('display', 'none')
+                    $('.medium').css('display','inherit');
+
                 }
             })
         }
@@ -131,7 +150,8 @@
     // Required. Called when a user selects an item in the Chooser.
     success: function(files) {
         $('.medium').css('display','none');
-        $('.loading').css('display', 'block')
+        $('.loading').css('display', 'block');
+
         console.log(files[0]);
         file=files[0];
 
@@ -140,7 +160,9 @@
               show_download_link(data)
             }
             else{
-                alert(data.data)
+                alert(data.data);
+                $('.loading').css('display', 'none')
+                $('.medium').css('display','inherit');
             }
         });
 
