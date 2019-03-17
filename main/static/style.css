@@ -207,6 +207,12 @@ footer{
      border: 7px solid #ea6e55;
 }
 
+
+
+    .site-link-footer{
+        font-size:15px;
+        font-weight: 700;
+    }
     .dropbox-dropin-btn{
         font-size: 0px !important;
         left:70px

@@ -20,6 +20,13 @@ class HomeView(ListView):
     context_object_name = 'converters'
     template_name = 'index.html'
 
+    def get_context_data(self, **kwargs):
+        context=super(HomeView,self).get_context_data(**kwargs)
+        context['title']='PDF Converter - Convert PDF files for free online'
+        context['description']='Convert PDF files with our Converter tool - a free online PDF converter. Convert Word to PDF, JPG to PDF, Excel to PDF, HTML to PDF, PNG to PDF, etc.'
+        context['thumbnail']='word-to-pdf.png'
+        return context
+
 class ConverterDetail(DetailView):
     model=Converter
     context_object_name = 'converter'
@@ -29,6 +36,9 @@ class ConverterDetail(DetailView):
         context=super(ConverterDetail,self).get_context_data(**kwargs)
         context['more_tools']=Converter.objects.all().exclude(id=self.object.id)
         context['converters']=Converter.objects.all()
+        context['title']='PDF Converter - Convert '+self.object.title+' file for free online'
+        context['description']=self.object.description
+        context['thumbnail']=self.object.image_file
         return context
 
 
