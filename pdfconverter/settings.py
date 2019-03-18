@@ -25,7 +25,7 @@ SECRET_KEY = '$s8y6k9zbbwm(bp1($woe^rm7mpqrhzp+i)8+3x455s^*+4cu#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wordtopdf.projecttopics.org', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.projecttopics.org', 'localhost', '127.0.0.1']
 
 
 # Application definition
