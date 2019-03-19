@@ -6,46 +6,49 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>https://wordtopdf.projecttopics.org/</loc>
+  <loc>https://pdftools.projecttopics.org/</loc>
   <lastmod>2019-03-17T03:20:38+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://wordtopdf.projecttopics.org/converter/word-to-pdf.html</loc>
+  <loc>https://pdftools.projecttopics.org/converter/word-to-pdf.html</loc>
   <lastmod>2019-03-17T03:20:38+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://wordtopdf.projecttopics.org/converter/jpg-to-pdf.html</loc>
+  <loc>https://pdftools.projecttopics.org/converter/jpg-to-pdf.html</loc>
   <lastmod>2019-03-17T03:20:38+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://wordtopdf.projecttopics.org/converter/html-to-pdf.html</loc>
+  <loc>https://pdftools.projecttopics.org/converter/html-to-pdf.html</loc>
   <lastmod>2019-03-17T03:20:38+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://wordtopdf.projecttopics.org/converter/png-to-pdf.html</loc>
+  <loc>https://pdftools.projecttopics.org/converter/png-to-pdf.html</loc>
   <lastmod>2019-03-17T03:20:38+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://wordtopdf.projecttopics.org/converter/docx-to-pdf.html</loc>
+  <loc>https://pdftools.projecttopics.org/converter/docx-to-pdf.html</loc>
   <lastmod>2019-03-17T03:20:38+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://wordtopdf.projecttopics.org/converter/ppt-to-pdf.html</loc>
+  <loc>https://pdftools.projecttopics.org/converter/ppt-to-pdf.html</loc>
   <lastmod>2019-03-17T03:20:38+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
 <url>
-  <loc>https://wordtopdf.projecttopics.org/converter/excel-to-pdf.html</loc>
+  <loc>https://pdftools.projecttopics.org/converter/excel-to-pdf.html</loc>
   <lastmod>2019-03-17T03:20:38+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://pdftools.projecttopics.org/converter/txt-to-pdf.html</loc>
+  <lastmod>2019-03-17T03:20:38+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 
 </urlset>

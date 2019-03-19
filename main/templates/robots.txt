@@ -1,3 +1,7 @@
-User-agent: *
+User-Agent: *
 Disallow:
-sitemap: https://journals.projecttopics.org/sitemap.xml
+
+Sitemap: https://pdftools.projecttopics.org/sitemap.xml
+
+
+
