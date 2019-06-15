@@ -68,9 +68,8 @@ class Convert(View):
 def do_convert(file_url, file_type, file_name, medium):
     convertapi.api_secret = settings.API_SECRET
     base_url='https://wordtopdf.projecttopics.org'
-    #pdb.set_trace()
     try:
-        #pdb.set_trace()
+        pdb.set_trace()
         if file_type == 'docx':
             converter = Converter.objects.filter(convert_from=file_type.strip())[0]
         else:
@@ -82,7 +81,6 @@ def do_convert(file_url, file_type, file_name, medium):
     # TODO: change file url before upload
     if medium == 'dropzone':
         file_url = base_url+file_url
-        pdb.set_trace()
     try:
         result = convertapi.convert(
             'pdf',
