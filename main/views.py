@@ -82,10 +82,11 @@ def do_convert(file_url, file_type, file_name, medium):
     # TODO: change file url before upload
     if medium == 'dropzone':
         file_url = base_url+file_url
+        pdb.set_trace()
     try:
         result = convertapi.convert(
             'pdf',
-            {'File': file_url},#'C:\\Users\\tolu\\PycharmProjects\\pdfconverter\\media\\' + filename},  # uploaded_file_url},
+            {'File':file_url},#'C:\\Users\\tolu\\PycharmProjects\\pdfconverter\\media\\' + filename},  # uploaded_file_url},
             from_format=file_type,
         )
         file_url = result.file.url
