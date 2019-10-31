@@ -61,15 +61,15 @@ class Convert(View):
         filename = fs.save(file.name, file)
         file_type=filename.split('.').pop()
         uploaded_file_url = fs.url(filename)
-        res=do_convert(uploaded_file_url,file_type,filename,'dropzone')
+        res=do_convert(filename,file_type,filename,'dropzone')
         return JsonResponse(res)
 
 
 def do_convert(file_url, file_type, file_name, medium):
     convertapi.api_secret = settings.API_SECRET
-    base_url='https://wordtopdf.projecttopics.org'
+    #base_url='https://pdftools.projecttopics.org'
+    base_directory = settings.MEDIA_ROOT
     try:
-        pdb.set_trace()
         if file_type == 'docx':
             converter = Converter.objects.filter(convert_from=file_type.strip())[0]
         else:
@@ -80,13 +80,10 @@ def do_convert(file_url, file_type, file_name, medium):
     #
     # TODO: change file url before upload
     if medium == 'dropzone':
-        file_url = base_url+file_url
+        file_url = '%s/%s' %(base_directory, file_url)
     try:
-        result = convertapi.convert(
-            'pdf',
-            {'File':file_url},#'C:\\Users\\tolu\\PycharmProjects\\pdfconverter\\media\\' + filename},  # uploaded_file_url},
-            from_format=file_type,
-        )
+        upload_io = convertapi.UploadIO(open(file_url, 'rb'))
+        result = convertapi.convert('pdf', {'File': upload_io})
         file_url = result.file.url
         return {'status': 200, 'data': file_url}
     except:
